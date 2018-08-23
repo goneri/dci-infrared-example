@@ -11,11 +11,6 @@
     source .venv/bin/activate
     infrared tripleo-undercloud --version 13 --images-task rpm --cdn /etc/dci-ansible-agent/cdn_creds.yml --repos-skip-release True --repos-url http://192.168.1.40/dci_repo/dci_repo.repo
 
-- name: Fix the mode of the ansible.ssh.config, this way we will be able to include
-  file:
-    path: ~/infrared/.workspaces/active/ansible.ssh.config
-    mode: 0600
-
 - name: Registry InfraRed's undercloud-0 IP
   set_fact: undercloud_ip="{{ lookup('pipe', 'getent hosts undercloud-0').split()[0]}}"
 
